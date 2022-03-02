@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <title>Retometer</title>
+  </head>
+  <body>
+    <!-- ========= Inital Form to set final date ========= -->
+    <section class="date">
+      <h2>set challenge final date</h2>
+      <form class="date-form">
+        <input type="text" placeholder="yyyy-mm-dd 24:00" />
+      </form>
+    </section>
+    <!-- ============ Form to add challenges ============= -->
+    <section class="challenges hidden">
+      <h2 class="countdown"></h2>
+      <h2>set a challenge</h2>
+      <form class="challenges-form" action="">
+        <input type="text" placeholder="Title" />
+        <input type="number" placeholder="Amount" />
+        <input type="text" placeholder="Units" />
+        <input type="number" placeholder="Daily" />
+        <input type="submit" value=">" />
+      </form>
+      <div class="dynamic"></div>
+    </section>
+    <script src="app.js"></script>
+  </body>
+</html>

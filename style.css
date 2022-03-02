@@ -1,0 +1,51 @@
+/* ======================================================== */
+/*                          GLOBAL                          */
+/* ======================================================== */
+:root {
+  --note-bg-color: blueviolet;
+  --note-wd-color: white;
+}
+h2 {
+  text-transform: uppercase;
+  text-align: center;
+}
+form {
+  display: flex;
+  justify-content: center;
+}
+input {
+  margin: 1rem 0.5rem;
+}
+.hidden {
+  display: none;
+}
+/* ======================================================== */
+/*                       CHALLENGES                         */
+/* ======================================================== */
+.countdown {
+  padding: 00.5rem 2rem;
+  background-color: var(--note-bg-color);
+  color: var(--note-wd-color);
+  width: 7rem;
+  border-radius: 999px;
+  margin: 0 auto;
+}
+.challenges-form input {
+  width: 5rem;
+}
+.chg {
+  width: 30rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.chg span {
+  width: 0.5rem;
+  text-align: center;
+}
+.chg strong {
+  width: 5rem;
+}
+.days-left {
+  margin-left: -2rem;
+}
