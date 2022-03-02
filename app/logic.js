@@ -69,7 +69,7 @@ if (!finaldate) {
     `;
     const localChallenge = localStorage.getItem("chg");
     localStorage.setItem("chg", localChallenge + newChallenge);
-    dyn.innerHTML += localChallenge + newChallenge;
+    dyn.innerHTML += newChallenge;
   }
 }
 
