@@ -28,7 +28,7 @@ input {
   color: var(--note-wd-color);
   width: 7rem;
   border-radius: 999px;
-  margin: 0 auto;
+  margin: 2rem auto;
 }
 .challenges-form input {
   width: 5rem;

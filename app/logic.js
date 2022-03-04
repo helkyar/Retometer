@@ -29,7 +29,7 @@ if (!finaldate) {
   date.classList.add("hidden");
   challenges.classList.remove("hidden");
 
-  dyn.innerHTML += localStorage.getItem("chg");
+  if (localStorage.getItem("chg")) dyn.innerHTML += localStorage.getItem("chg");
 
   const countdown = document.querySelector(".countdown");
 
@@ -79,7 +79,6 @@ if (!finaldate) {
 challenges.addEventListener("click", updateChallenge);
 
 function updateChallenge(e) {
-  console.log(e.target.tagName);
   if (e.target.tagName != "BUTTON") return;
 
   [...challenges.querySelectorAll(".chg")].map((art) => {
@@ -93,12 +92,32 @@ function updateChallenge(e) {
       const daysleft = art.querySelector(".days-left");
       amount.innerText = amount.innerText - daily.innerText;
       daysleft.innerText = (amount.innerText / daily.innerText).toFixed(2);
+      // if (!art.getAttribute("style")) {
+      art.setAttribute("style", "background-color:rgb(0,250,0)");
+      // } else {
+      //   let s = art.getAttribute("style").split(":")[1].split(",")[0];
+      //   let n = art.getAttribute("style").split(":")[1].split(",")[1];
+      //   n = n.substring(0, n.length - 1) - 50;
+      //   s = n.substring(0, s.length - 1) * 1;
+      //   s > 100
+      //     ? art.setAttribute("style", "background-color:rgb(0,250,0)")
+      //     : art.setAttribute("style", `background-color:rgb(0,${n},0)`);
+      // }
     } else if (e.target == plus) {
       const daily = art.querySelector(".daily");
       const amount = art.querySelector(".amount");
       const daysleft = art.querySelector(".days-left");
       amount.innerText = amount.innerText * 1 + daily.innerText * 1;
       daysleft.innerText = (amount.innerText / daily.innerText).toFixed(2);
+      // if (!art.getAttribute("style")) {
+      art.setAttribute("style", "background-color:rgb(250,250,250)");
+      // } else {
+      //   let n = art.getAttribute("style").split(":")[1].split(",")[1];
+      //   n = n.substring(0, n.length - 1) * 1 + 50;
+      //   n > 250
+      //     ? art.setAttribute("style", `background-color:rgb(255,255,255)`)
+      //     : art.setAttribute("style", `background-color:rgb(0,${n},0)`);
+      // }
     } else if (e.target == del) {
       art.parentNode.removeChild(art);
     }
