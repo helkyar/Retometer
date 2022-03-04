@@ -14,6 +14,7 @@ if (!finaldate) {
   function setDate(e) {
     e.preventDefault();
     const dateinput = document.querySelector(".date-form input");
+    console.log(dateinput);
     const end = new Date(`${dateinput.value.split(" ").join("T")}:00`);
 
     if (end == "Invalid Date") dateinput.value = "";
