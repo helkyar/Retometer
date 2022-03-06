@@ -81,7 +81,7 @@ challenges.addEventListener("click", updateChallenge);
 
 function updateChallenge(e) {
   if (e.target.tagName != "BUTTON") return;
-
+  const reset = challenges.querySelector(".reset");
   [...challenges.querySelectorAll(".chg")].map((art) => {
     const minus = art.querySelector(".minus");
     const plus = art.querySelector(".plus");
@@ -121,6 +121,8 @@ function updateChallenge(e) {
       // }
     } else if (e.target == del) {
       art.parentNode.removeChild(art);
+    } else if (e.target == reset) {
+      art.setAttribute("style", "background-color:rgb(250,250,250)");
     }
   });
   localStorage.setItem("chg", dyn.innerHTML);

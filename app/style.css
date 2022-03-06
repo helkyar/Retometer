@@ -22,6 +22,11 @@ input {
 /* ======================================================== */
 /*                       CHALLENGES                         */
 /* ======================================================== */
+.challenges {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .countdown {
   padding: 00.5rem 2rem;
   background-color: var(--note-bg-color);
@@ -48,4 +53,8 @@ input {
 }
 .days-left {
   margin-left: -2rem;
+}
+.reset {
+  padding: 0rem 10rem;
+  margin-top: 0.5rem;
 }
