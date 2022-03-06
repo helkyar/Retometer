@@ -1,6 +1,5 @@
 const date = document.querySelector(".date");
 const challenges = document.querySelector(".challenges");
-const dyn = document.querySelector(".dynamic");
 
 const finaldate = localStorage.getItem("end");
 
@@ -22,17 +21,16 @@ if (!finaldate) {
 
     location.reload();
   }
-
-  /**
-   * Get challenges from input and set it to local storage
-   */
 } else {
+  /**
+   * Get challenges from input and create new challenge
+   */
   date.classList.add("hidden");
   challenges.classList.remove("hidden");
+  const dyn = document.querySelector(".dynamic");
+  const countdown = document.querySelector(".countdown");
 
   if (localStorage.getItem("chg")) dyn.innerHTML += localStorage.getItem("chg");
-
-  const countdown = document.querySelector(".countdown");
 
   const setCountDown = () => {
     let timeleft = finaldate - Date.now();
@@ -72,58 +70,59 @@ if (!finaldate) {
     localStorage.setItem("chg", localChallenge + newChallenge);
     dyn.innerHTML += newChallenge;
   }
-}
 
-/**
- * Update challenges
- */
-challenges.addEventListener("click", updateChallenge);
+  /**
+   * Update challenges
+   */
+  challenges.addEventListener("click", updateChallenge);
 
-function updateChallenge(e) {
-  if (e.target.tagName != "BUTTON") return;
-  const reset = challenges.querySelector(".reset");
-  [...challenges.querySelectorAll(".chg")].map((art) => {
-    const minus = art.querySelector(".minus");
-    const plus = art.querySelector(".plus");
-    const del = art.querySelector(".del");
-
-    if (e.target == minus) {
-      const daily = art.querySelector(".daily");
-      const amount = art.querySelector(".amount");
-      const daysleft = art.querySelector(".days-left");
-      amount.innerText = amount.innerText - daily.innerText;
-      daysleft.innerText = (amount.innerText / daily.innerText).toFixed(2);
-      // if (!art.getAttribute("style")) {
-      art.setAttribute("style", "background-color:rgb(0,250,0)");
-      // } else {
-      //   let s = art.getAttribute("style").split(":")[1].split(",")[0];
-      //   let n = art.getAttribute("style").split(":")[1].split(",")[1];
-      //   n = n.substring(0, n.length - 1) - 50;
-      //   s = n.substring(0, s.length - 1) * 1;
-      //   s > 100
-      //     ? art.setAttribute("style", "background-color:rgb(0,250,0)")
-      //     : art.setAttribute("style", `background-color:rgb(0,${n},0)`);
-      // }
-    } else if (e.target == plus) {
-      const daily = art.querySelector(".daily");
-      const amount = art.querySelector(".amount");
-      const daysleft = art.querySelector(".days-left");
-      amount.innerText = amount.innerText * 1 + daily.innerText * 1;
-      daysleft.innerText = (amount.innerText / daily.innerText).toFixed(2);
-      // if (!art.getAttribute("style")) {
-      art.setAttribute("style", "background-color:rgb(250,250,250)");
-      // } else {
-      //   let n = art.getAttribute("style").split(":")[1].split(",")[1];
-      //   n = n.substring(0, n.length - 1) * 1 + 50;
-      //   n > 250
-      //     ? art.setAttribute("style", `background-color:rgb(255,255,255)`)
-      //     : art.setAttribute("style", `background-color:rgb(0,${n},0)`);
-      // }
-    } else if (e.target == del) {
-      art.parentNode.removeChild(art);
-    } else if (e.target == reset) {
-      art.setAttribute("style", "background-color:rgb(250,250,250)");
+  function updateChallenge(e) {
+    if (e.target.tagName != "BUTTON") return;
+    const reset = challenges.querySelector(".reset");
+    let art = [...challenges.querySelectorAll(".chg")];
+    for (let i = 0; i < art.length; i++) {
+      console.log(i);
+      if (e.target == art[i].querySelector(".minus")) {
+        const daily = art[i].querySelector(".daily");
+        const amount = art[i].querySelector(".amount");
+        const daysleft = art[i].querySelector(".days-left");
+        amount.innerText = amount.innerText - daily.innerText;
+        daysleft.innerText = (amount.innerText / daily.innerText).toFixed(2);
+        // if (!art[i].getAttribute("style")) {
+        art[i].setAttribute("style", "background-color:rgb(0,250,0)");
+        // } else {
+        //   let s = art[i].getAttribute("style").split(":")[1].split(",")[0];
+        //   let n = art[i].getAttribute("style").split(":")[1].split(",")[1];
+        //   n = n.substring(0, n.length - 1) - 50;
+        //   s = n.substring(0, s.length - 1) * 1;
+        //   s > 100
+        //     ? art[i].setAttribute("style", "background-color:rgb(0,250,0)")
+        //     : art[i].setAttribute("style", `background-color:rgb(0,${n},0)`);
+        // }
+        break;
+      } else if (e.target == art[i].querySelector(".plus")) {
+        const daily = art[i].querySelector(".daily");
+        const amount = art[i].querySelector(".amount");
+        const daysleft = art[i].querySelector(".days-left");
+        amount.innerText = amount.innerText * 1 + daily.innerText * 1;
+        daysleft.innerText = (amount.innerText / daily.innerText).toFixed(2);
+        // if (!art[i].getAttribute("style")) {
+        art[i].setAttribute("style", "background-color:rgb(250,250,250)");
+        // } else {
+        //   let n = art[i].getAttribute("style").split(":")[1].split(",")[1];
+        //   n = n.substring(0, n.length - 1) * 1 + 50;
+        //   n > 250
+        //     ? art[i].setAttribute("style", `background-color:rgb(255,255,255)`)
+        //     : art[i].setAttribute("style", `background-color:rgb(0,${n},0)`);
+        // }
+        break;
+      } else if (e.target == art[i].querySelector(".del")) {
+        art[i].parentNode.removeChild(art[i]);
+        break;
+      } else if (e.target == reset) {
+        art[i].setAttribute("style", "background-color:rgb(250,250,250)");
+      }
     }
-  });
-  localStorage.setItem("chg", dyn.innerHTML);
+    localStorage.setItem("chg", dyn.innerHTML);
+  }
 }

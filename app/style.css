@@ -38,6 +38,10 @@ input {
 .challenges-form input {
   width: 5rem;
 }
+.dynamic {
+  max-height: 40vh;
+  overflow: auto;
+}
 .chg {
   width: 30rem;
   display: flex;
