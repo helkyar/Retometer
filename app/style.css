@@ -16,9 +16,7 @@ form {
 input {
   margin: 1rem 0.5rem;
 }
-.hidden {
-  display: none;
-}
+
 /* ======================================================== */
 /*                       CHALLENGES                         */
 /* ======================================================== */
@@ -50,15 +48,31 @@ input {
 }
 .chg span {
   width: 0.5rem;
+  padding: 0 1rem;
   text-align: center;
 }
 .chg strong {
-  width: 5rem;
+  width: 3rem;
+}
+.chg > span:nth-child(5) {
+  width: 4rem;
+  text-align: right;
+  margin-right: -2.5rem;
+}
+.score {
+  /* width: 3rem; */
+  margin-left: -0.5rem;
 }
 .days-left {
-  margin-left: -2rem;
+  margin-left: -1.5rem;
+  margin-right: 0.5rem;
 }
 .reset {
   padding: 0rem 10rem;
   margin-top: 0.5rem;
+}
+
+/* Leaf here for class specificity */
+.hidden {
+  display: none;
 }

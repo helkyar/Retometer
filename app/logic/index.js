@@ -1,3 +1,5 @@
+hello();
+
 const date = document.querySelector(".date");
 const challenges = document.querySelector(".challenges");
 
@@ -13,7 +15,6 @@ if (!finaldate) {
   function setDate(e) {
     e.preventDefault();
     const dateinput = document.querySelector(".date-form input");
-    console.log(dateinput);
     const end = new Date(`${dateinput.value.split(" ").join("T")}:00`);
 
     if (end == "Invalid Date") dateinput.value = "";
@@ -58,8 +59,9 @@ if (!finaldate) {
             <span class="daily">${c[3].value}</span>
             <button class="plus">+</button>
             <strong>${c[0].value}:</strong> 
-            <span class="amount">${c[1].value}</span>
+            <span><strong class="score">0</strong>/${c[1].value}</span>
             <span>${c[2].value}</span>
+            <span class="amount">${c[1].value}</span>
             [<span class="days-left">
                 ${(c[1].value / c[3].value).toFixed(2)}
             </span>(d)]       
@@ -80,45 +82,37 @@ if (!finaldate) {
     if (e.target.tagName != "BUTTON") return;
     const reset = challenges.querySelector(".reset");
     let art = [...challenges.querySelectorAll(".chg")];
+
     for (let i = 0; i < art.length; i++) {
-      console.log(i);
+      //
       if (e.target == art[i].querySelector(".minus")) {
         const daily = art[i].querySelector(".daily");
+        const score = art[i].querySelector(".score");
         const amount = art[i].querySelector(".amount");
         const daysleft = art[i].querySelector(".days-left");
+        score.innerText = score.innerText * 1 + daily.innerText * 1;
         amount.innerText = amount.innerText - daily.innerText;
         daysleft.innerText = (amount.innerText / daily.innerText).toFixed(2);
-        // if (!art[i].getAttribute("style")) {
+
         art[i].setAttribute("style", "background-color:rgb(0,250,0)");
-        // } else {
-        //   let s = art[i].getAttribute("style").split(":")[1].split(",")[0];
-        //   let n = art[i].getAttribute("style").split(":")[1].split(",")[1];
-        //   n = n.substring(0, n.length - 1) - 50;
-        //   s = n.substring(0, s.length - 1) * 1;
-        //   s > 100
-        //     ? art[i].setAttribute("style", "background-color:rgb(0,250,0)")
-        //     : art[i].setAttribute("style", `background-color:rgb(0,${n},0)`);
-        // }
         break;
+        //
       } else if (e.target == art[i].querySelector(".plus")) {
         const daily = art[i].querySelector(".daily");
+        const score = art[i].querySelector(".score");
         const amount = art[i].querySelector(".amount");
         const daysleft = art[i].querySelector(".days-left");
+        score.innerText = score.innerText - daily.innerText;
         amount.innerText = amount.innerText * 1 + daily.innerText * 1;
         daysleft.innerText = (amount.innerText / daily.innerText).toFixed(2);
-        // if (!art[i].getAttribute("style")) {
+
         art[i].setAttribute("style", "background-color:rgb(250,250,250)");
-        // } else {
-        //   let n = art[i].getAttribute("style").split(":")[1].split(",")[1];
-        //   n = n.substring(0, n.length - 1) * 1 + 50;
-        //   n > 250
-        //     ? art[i].setAttribute("style", `background-color:rgb(255,255,255)`)
-        //     : art[i].setAttribute("style", `background-color:rgb(0,${n},0)`);
-        // }
         break;
+        //
       } else if (e.target == art[i].querySelector(".del")) {
         art[i].parentNode.removeChild(art[i]);
         break;
+        //
       } else if (e.target == reset) {
         art[i].setAttribute("style", "background-color:rgb(250,250,250)");
       }
